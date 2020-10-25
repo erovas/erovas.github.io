@@ -1,14 +1,487 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+
+    <link rel="icon" href="Static/img/logo.png" type="image/png" sizes="16x16">
+    
+    <!-- meta tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="Static/js/Ver.min.js"></script>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1">
+    <meta name="description" content="Emanuel Rojas Vásquez is a software engineer specializing in building (and occasionally designing) exceptional websites, applications, and everything in between.">
+
+    <title>Portafolio de Emanuel</title>
+
+    <!-- Polyfills - Para IE11+ -->
+    <script src="Static/js/polyfills/Symbol-polyfill.min.js"></script>
+
+    <!-- Librerias -->
+    <script src="Static/js/libs/Device.js"></script>  <!-- Obtiene algunas caracteristicas del navegador segun el dispositivo -->
+    <script src="Static/js/libs/Events.js"></script>  <!-- Controlador para delegación de eventos -->
+    <script src="Static/js/libs/Ver.js"></script>     <!-- Mini framework para componentes web -->
+    <script src="Static/js/libs/Styler.js"></script>  <!-- Controlador para estilizado responsive del documento -->
+    <script defer src="Static/js/libs/Viewports.js"></script>  <!-- Genera variables CSS dinamicas con el valor del viewport del dispositivo -->
+
+    <!-- scripts propios -->
+    <script defer src="Static/js/Initials-Setting.js"></script>
+    <script defer src="Static/js/Styles.js"></script>
+
+    <!-- Componentes -->
+    <script defer src="Static/js/components/Check-burger.js"></script>
+    <script defer src="Static/js/components/Header.js"></script>
+    <script defer src="Static/js/components/ERV-H2.js"></script>
+    <script defer src="Static/js/components/ERV-Exp.js"></script>
+    <script defer src="Static/js/components/ERV-Work.js"></script>
+    <script defer src="Static/js/components/ERV-Proj.js"></script>
+    <script defer src="Static/js/components/ERV-Button.js"></script>
+
 </head>
 <body>
+
+    <header>
+        <a href="#about"><span>01.</span> Sobre mi</a>
+        <p>|</p>
+        <a href="#experience"><span>02.</span> Experiencia</a>
+        <p>|</p>
+        <a href="#work"><span>03.</span> Trabajos</a>
+        <p>|</p>
+        <a href="#projects"><span>04.</span> Proyectos</a>
+        <p>|</p>
+        <a href="#contact"><span>05.</span> Contacto</a>
+    </header>
+
+    <div id="content">
+
+        <main>
+            <section class="introduction">
+                <!--<div style="padding-top: 0rem;"></div>-->
+                <h3 style="color: #007ACC;">Hola, mi nombre es</h3>
+                <h1 style="font-size: 8.25rem; color: #ccd6f6; text-align: left;">Emanuel Rojas Vásquez</h1>
+                <p style="color: #5897b4;">Creo herramientas para la web, especialmente relacionado con GUI y UX</p>
+
+            </section>
+            
+            <section id="about">
+                
+                <erv-h2>
+                    <span data-slot="n">01.</span>
+                    <p>Sobre mi</p>
+                </erv-h2>
+
+                <br><br>
+                <div style="display: flex;">
+                    <div data-name="text">
+                        <p>
+                            Hola, soy Emanuel, desarrollador Full Stack.
+                        </p>
+                        <br>
+                        <p>
+                            Me gusta crear bibliotecas y herramientas para la web, los puedes ver en <a href="#projects" style="color: #088de6;">proyectos</a>, entre otras cosas de posible interes.
+                        </p>
+                        <br>
+                        <p>
+                            Estas son algunas de las tecnologias que he utlizado recientemente:
+                        </p>
+                        <br>
+
+                        <div style="padding-left: 3rem;">
+                            <div>
+                                <ul>
+                                    <li>JavaScript (ES5+)</li>
+                                    <li>Jquery</li>
+                                    <li>HTML y CSS</li>
+                                    <li>C# y .Net framework 4.X</li>
+                                    <li>SQL Server</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div data-name="picture" style="transition: 0.3s;">
+                        <img src="Static/img/about.png">
+                    </div>
+                </div>
+                
+            </section>
     
-    <h1>HOLA</h1>
+            <section id="experience">
+
+                <erv-h2>
+                    <span data-slot="n">02.</span>
+                    <p>Experiencia</p>
+                </erv-h2>
+
+                <br><br>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <erv-exp>
+                    <a href="https://www.cyc.es" target="_blank" data-slot="title">
+                        CyC - Consultoria & Comunicaciones Del País Vasco
+                    </a>
+
+                    <p data-slot="duration">
+                        Julio 2019 - Septiembre 2020
+                    </p>
+
+                    <p data-slot="position">
+                        Desarrollador Full Stack
+                    </p>
+
+                    <ul data-slot="items">
+                        <li>
+                            Desarrollo en equipo de aplicaciones web responsive adaptativo a diferentes dispositivos.
+                        </li>
+                        <br>
+                        <li>
+                            Utilizando diferentes lenguajes de programación y/o marcado como C#, JavaScript, (Transact-SQL) SQL Server, HTML5+, CSS3+.
+                        </li>
+                        <br>
+                        <li>
+                            Trabajando con Net. Framework 4.X, Windows Forms y Web Forms.
+                        </li>
+                    </ul>
+                </erv-exp>
+
+                <br><br>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <erv-exp>
+                    <a href="https://www.essbilbao.org" target="_blank" data-slot="title">
+                        ESS BILBAO
+                    </a>
+
+                    <p data-slot="duration">
+                        Octubre 2019 - Diciembre 2019
+                    </p>
+
+                    <p data-slot="position">
+                        Programador
+                    </p>
+
+                    <ul data-slot="items">
+                        <li>
+                            Optimización y correción de software para análisis de imagenes (ImageJ) para el conteo de neutrones.
+                        </li>
+                        <br>
+                        <li>
+                            Lenguajes utilizados Java y C++.
+                        </li>
+                    </ul>
+                </erv-exp>
+
+            </section>
+    
+            <section id="work">
+                <erv-h2>
+                    <span data-slot="n">03.</span>
+                    <p>Trabajos</p>
+                </erv-h2>
+                
+                <br><br>
+
+                <p>
+                    Aquí muestro algunos de los trabajos realizados como desarrollador Full Stack. Resaltar que lo mostrado aquí no son los trabajos originales realizados por motivos de confidencialidad, por tanto son recreaciones de los originales.
+                </p>
+                <br><br>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <erv-work>
+                    <a data-slot="title">Gestión de vehículos</a>
+
+                    <p data-slot="description">
+                        Aplicación web de uso interno en una empresa fabricante de coches, para gestionar los vehículos que requieren un retrabajo debido a pequeños fallos en su fabricación.
+                    </p>
+
+                    <ul data-slot="func">
+                        <li>GUI responsive y adaptativo</li>
+                        <li>Compresion de imagenes.</li>
+                        <li>Lector de codigos de barras con camara.</li>
+                        <li>Exportacion de tablas a PDF.</li>
+                        <li>Impresión de informes.</li>
+                    </ul>
+
+                    <a data-slot="impli">75%</a>
+
+                    <ul data-slot="tech">
+                        <li>JavaScript (ES5+)</li>
+                        <li>HTML5 y CSS3</li>
+                        <li>C# 4.0</li>
+                        <li>.Net Framework 4.5.2</li>
+                        <li>OpenID</li>
+                        <li>SQL Server (Transact-SQL)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        Sin screenshots
+                    </div>
+
+                    <div data-slot="buttons" style="display: flex; justify-content: center;">
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>demo</a>
+                        </erv-button>
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>repositorio</a>
+                        </erv-button>
+                    </div>
+                    
+                </erv-work>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <br><br><br>
+
+                <erv-work>
+                    <a data-slot="title">Fichaje remoto</a>
+
+                    <p data-slot="description">
+                        Pequeña aplicación web de uso interno en una empresa consultora, para el control de fichaje remoto de sus empleados
+                    </p>
+
+                    <ul data-slot="func">
+                        <li>GUI responsive</li>
+                    </ul>
+
+                    <a data-slot="impli">50%</a>
+
+                    <ul data-slot="tech">
+                        <li>JavaScript (ES5+)</li>
+                        <li>HTML5 y CSS3</li>
+                        <li>C# 4.0</li>
+                        <li>.Net Framework 4.5.2</li>
+                        <li>SQL Server (Transact-SQL)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        <li>Sin screenshots</li>
+                    </div>
+
+                    <div data-slot="buttons" style="display: flex; justify-content: center;">
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>demo</a>
+                        </erv-button>
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>repositorio</a>
+                        </erv-button>
+                    </div>
+                    
+                </erv-work>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <br><br><br>
+
+                <erv-work>
+                    <a data-slot="title">Gestion de eventos</a>
+
+                    <p data-slot="description">
+                        Pequeña aplicación web de uso interno y externo para un ayuntamiento, para gestionar eventos e inscripciones realizadas en un municipio.
+                    </p>
+
+                    <ul data-slot="func">
+                        <li>GUI responsive</li>
+                    </ul>
+
+                    <a data-slot="impli">30%</a>
+
+                    <ul data-slot="tech">
+                        <li>JavaScript</li>
+                        <li>HTML y CSS</li>
+                        <li>C# 4.0</li>
+                        <li>ASP.NET Webforms</li>
+                        <li>.Net Framework 4.5.2</li>
+                        <li>SQL Server (Transact-SQL)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        <li>Sin screenshots</li>
+                    </div>
+
+                    <div data-slot="buttons">
+                    </div>
+                    
+                </erv-work>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+            </section>
+    
+            <section id="projects">
+                <erv-h2>
+                    <span data-slot="n">04.</span>
+                    <p>Proyectos</p>
+                </erv-h2>
+                
+                <br><br>
+
+                <p>
+                    Aquí muestro los proyectos personales que he realizado (algunos fueron usados en producción), los cuales son mini frameworks y/o bibliotecas que ayudan al desarrollo de aplicaciones.
+                </p>
+                <br><br>
+
+                <erv-proj>
+                    <a data-slot="title">Ver.js</a>
+
+                    <p data-slot="description">
+                        Mini framework para la creación de componentes webs personalizados.
+                    </p>
+
+                    <a data-slot="impli">100%</a>
+
+                    <ul data-slot="deps">
+                        <li>IE11+</li>
+                    </ul>
+
+                    <ul data-slot="items">
+                        <li>JavaScript (ES5)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        <li>Sin screenshots</li>
+                    </div>
+
+                    <div data-slot="buttons" style="display: flex; justify-content: center;">
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>demo</a>
+                        </erv-button>
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>repositorio</a>
+                        </erv-button>
+                    </div>
+
+                </erv-proj>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <br><br><br>
+
+                <erv-proj>
+                    <a data-slot="title">Device.js</a>
+
+                    <p data-slot="description">
+                        Pequeña biblioteca JavaScript de apoyo que permite obtener algunas caracteristicas del dispositivo, como los diferentes anchos, altos, orientación, pantalla completa, movil-tablet o escritorio, alto de la barra de navegación, etc.
+                    </p>
+
+                    <a data-slot="impli">100%</a>
+
+                    <ul data-slot="deps">
+                        <li>IE9+</li>
+                    </ul>
+
+                    <ul data-slot="items">
+                        <li>JavaScript (ES5)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        <li>Sin screenshots</li>
+                    </div>
+
+                    <div data-slot="buttons" style="display: flex; justify-content: center;">
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>demo</a>
+                        </erv-button>
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>repositorio</a>
+                        </erv-button>
+                    </div>
+
+                </erv-proj>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <br><br><br>
+
+                <erv-proj>
+                    <a data-slot="title">Events.js</a>
+
+                    <p data-slot="description">
+                        Pequeña biblioteca JavaScript de apoyo que permite gestionar eventos del navegador mediante delegación de eventos.
+                    </p>
+
+                    <a data-slot="impli">100%</a>
+
+                    <ul data-slot="deps">
+                        <li>IE11+</li>
+                    </ul>
+
+                    <ul data-slot="items">
+                        <li>JavaScript (ES5)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        <li>Sin screenshots</li>
+                    </div>
+
+                    <div data-slot="buttons" style="display: flex; justify-content: center;">
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>demo</a>
+                        </erv-button>
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>repositorio</a>
+                        </erv-button>
+                    </div>
+
+                </erv-proj>
+
+                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+
+                <br><br><br>
+
+                <erv-proj>
+                    <a data-slot="title">Styler.js</a>
+
+                    <p data-slot="description">
+                        Pequeña biblioteca de ayuda, para insertar estilos CSS según el dispositivo (movil, tablet, escritorio o todos).
+                    </p>
+
+                    <a data-slot="impli">100%</a>
+
+                    <ul data-slot="deps">
+                        <li>IE11+</li>
+                        <li>Device.js (opcional)</li>
+                        <li>Events.js (opcional)</li>
+                    </ul>
+
+                    <ul data-slot="items">
+                        <li>JavaScript (ES5)</li>
+                    </ul>
+
+                    <div data-slot="pics">
+                        <li>Sin screenshots</li>
+                    </div>
+
+                    <div data-slot="buttons" style="display: flex; justify-content: center;">
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>demo</a>
+                        </erv-button>
+                        <erv-button data-color="blue" data-shape="outline">
+                            <a>repositorio</a>
+                        </erv-button>
+                    </div>
+
+                </erv-proj>
+
+            </section>
+
+            <section id="contact">
+                <erv-h2>
+                    <span data-slot="n">05.</span>
+                    <p>Contacto</p>
+                </erv-h2>
+            </section>
+
+        </main>
+
+        <div style="height: 10rem;"></div>
+
+        <footer>
+            <p style="text-align: center;">Powered by Github Pages & Ver.js, Device.js, Events.js, Styler,js</p>
+            <p style="min-height: 1rem;"></p>
+            <p>Copyright - 2020</p>
+        </footer>
+
+    </div>
     
 </body>
 </html>
