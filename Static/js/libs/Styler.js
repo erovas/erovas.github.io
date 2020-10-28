@@ -53,7 +53,7 @@ Object.defineProperty(window, 'Styler', {
 
         //Inserción del estilo para todos los dispositivos
         document.head.appendChild(Styles.all.general);
-        Styles.all.general.setAttribute('data-id', 'all-general');
+        Styles.all.general.setAttribute('styler-id', 'all-general');
 
         //#region Metodos
 
@@ -65,16 +65,14 @@ Object.defineProperty(window, 'Styler', {
                 return;
 
             const style = Dev[name] = document.createElement('style');
-            style.setAttribute('data-id', device+'-'+name);
-            //style.innerHTML = '@media screen and (min-width: ' + Break + 'px){';
+            style.setAttribute('styler-id', device+'-'+name);
             style.media = "screen and (min-width:"+Break+"px)";
             
             if(cssString)
                 style.innerHTML += cssString;
 
-            //style.innerHTML += '}';
-
-            document.head.appendChild(style);
+            const stylesNodes = document.head.querySelectorAll('style[styler-id*="'+device+'"]');
+            document.head.insertBefore(style, stylesNodes[stylesNodes.length - 1].nextSibling);
         }
 
         const removeBreakpoint = function(device, name){
@@ -95,20 +93,10 @@ Object.defineProperty(window, 'Styler', {
             if(!style)
                 return;
 
-            if(device === 'mobile' || device === 'tablet'){
-                const tag = style[name];
-                if(tag)
-                    tag.innerHTML += cssString;
-            }
-            else {
-                const tag = style[name];
-                if(!tag)
-                    return;
-                if(name === 'general')
-                    tag.innerHTML += cssString;
-                else 
-                    tag.innerHTML = tag.innerHTML.substring(0, tag.innerHTML.length - 1) + cssString + '}';
-            }
+            const tag = style[name];
+            
+            if(tag)
+                tag.innerHTML += cssString;
         }
 
         const getCss = function(device, name){
@@ -120,11 +108,9 @@ Object.defineProperty(window, 'Styler', {
                 return;
 
             const tag = style[name];
-            if(!tag)
-                return;
             
-            return tag.innerHTML;
-            
+            if(tag)
+                return tag.innerHTML;
         }
 
         const addStyles = function(styles) {
@@ -160,20 +146,20 @@ Object.defineProperty(window, 'Styler', {
 
             for (i = 0; i < breakPoints.length; i++) {
                 const tag = document.createElement('style');
-                tag.setAttribute('data-id', name+'-'+breakPoints[i]);
+                tag.setAttribute('styler-id', name+'-'+breakPoints[i]);
                 style[breakPoints[i]] = tag;
             }
 
-            //Insertado estatico
-            document.head.appendChild(style['general']);
+            const reference = style[breakPoints[0]];
 
-            const reference = style['general'].nextElementSibling;
+            //Insertado estatico
+            document.head.appendChild(reference);
 
             //Set inicial de insertado dinamico
             if(screen.height > screen.width)
-                document.head.insertBefore(style.portrait, reference);
+                document.head.insertBefore(style[breakPoints[1]], reference.nextSibling);
             else
-                document.head.insertBefore(style.landscape, reference);
+                document.head.insertBefore(style[breakPoints[2]], reference.nextSibling);
 
             //Anti rebote para el resize
             let resizeTimer = null;
@@ -184,15 +170,15 @@ Object.defineProperty(window, 'Styler', {
                     clearTimeout(resizeTimer);
 
                 resizeTimer = setTimeout(function(){
-                    if(style['portrait'].parentNode === document.head)
-                        document.head.removeChild(style['portrait']);
-                    else if(style['landscape'].parentNode === document.head)
-                        document.head.removeChild(style['landscape']);
+                    if(style[breakPoints[1]].parentNode === document.head)
+                        document.head.removeChild(style[breakPoints[1]]);
+                    else if(style[breakPoints[2]].parentNode === document.head)
+                        document.head.removeChild(style[breakPoints[2]]);
 
                     if(screen.height > screen.width)
-                        document.head.insertBefore(style['portrait'], reference);
+                        document.head.insertBefore(style[breakPoints[1]], reference.nextSibling);
                     else
-                        document.head.insertBefore(style['landscape'], reference);
+                        document.head.insertBefore(style[breakPoints[2]], reference.nextSibling);
                 }, 150);
             }
 
@@ -200,6 +186,31 @@ Object.defineProperty(window, 'Styler', {
                 Events.resize(setStyle);
             else
                 window.addEventListener('resize', setStyle, false);
+        }
+
+        let generate = function(device){
+            return {
+                addCss: function(breakpoint, cssString){
+                    addCss(device, breakpoint, cssString);
+                },
+                getCss: function(breakpoint){
+                    addCss(device, breakpoint);
+                },
+                addStyles: function(styles){
+                    const obj = {};
+                    obj[device] = styles
+                    addStyles(obj);
+                },
+                importStyle: function(breakpoint, url){
+                    importStyle(device, breakpoint, url);
+                },
+                addBreakpoint: function(name, breakpoint, cssString){
+                    addBreakpoint(device, name, breakpoint, cssString);
+                },
+                removeBreakpoint: function(name){
+                    removeBreakpoint(device, name);
+                }
+            }
         }
 
         if(isTablet){
@@ -218,11 +229,16 @@ Object.defineProperty(window, 'Styler', {
                 general: document.createElement('style')
             }
             document.head.appendChild(Styles.desktop.general);
-            Styles.desktop.general.setAttribute('data-id', 'desktop-general');
+            Styles.desktop.general.setAttribute('styler-id', 'desktop-general');
         }
 
+        const all = generate('all');
+        const desktop = generate('desktop');
+        const mobile = generate('mobile');
+        const tablet = generate('tablet');
+
         //Para liberar la memoria rapidamente o eso creo
-        set_Mobile_Tablet = isMobile = isTablet = null
+        generate = set_Mobile_Tablet = isMobile = isTablet = null;
 
         return {
             addCss: addCss,
@@ -231,89 +247,10 @@ Object.defineProperty(window, 'Styler', {
             importStyle: importStyle,
             addBreakpoint: addBreakpoint,
             removeBreakpoint: removeBreakpoint,
-            all: {
-                addCss: function(breakpoint, cssString){
-                    addCss('all', breakpoint, cssString);
-                },
-                getCss: function(breakpoint){
-                    addCss('all', breakpoint);
-                },
-                addStyles: function(styles){
-                    addStyles({ all: styles });
-                },
-                importStyle: function(breakpoint, url){
-                    importStyle('all', breakpoint, url);
-                },
-                addBreakpoint: function(name, breakpoint, cssString){
-                    addBreakpoint('all', name, breakpoint, cssString);
-                },
-                removeBreakpoint: function(name){
-                    removeBreakpoint('all', name);
-                }
-            },
-            desktop: {
-                addCss: function(breakpoint, cssString){
-                    addCss('desktop', breakpoint, cssString);
-                },
-                getCss: function(breakpoint){
-                    addCss('desktop', breakpoint);
-                },
-                addStyles: function(styles){
-                    addStyles({ desktop: styles });
-                },
-                importStyle: function(breakpoint, url){
-                    importStyle('desktop', breakpoint, url);
-                },
-                addBreakpoint: function(name, breakpoint, cssString){
-                    addBreakpoint('desktop', name, breakpoint, cssString);
-                },
-                removeBreakpoint: function(name){
-                    removeBreakpoint('desktop', name);
-                }
-            },
-            mobile: {
-                addCss: function(breakpoint, cssString){
-                    addCss('mobile', breakpoint, cssString);
-                },
-                getCss: function(breakpoint){
-                    addCss('mobile', breakpoint);
-                },
-                addStyles: function(styles){
-                    addStyles({ mobile: styles });
-                },
-                importStyle: function(breakpoint, url){
-                    importStyle('mobile', breakpoint, url);
-                },
-                addBreakpoint: function(name, breakpoint, cssString){
-                    addBreakpoint('mobile', name, breakpoint, cssString);
-                },
-                removeBreakpoint: function(name){
-                    removeBreakpoint('mobile', name);
-                }
-            },
-            tablet: {
-                addCss: function(breakpoint, cssString){
-                    addCss('tablet', breakpoint, cssString);
-                },
-                getCss: function(breakpoint){
-                    addCss('tablet', breakpoint);
-                },
-                getCss: function(breakpoint){
-                    addCss('tablet', breakpoint);
-                },
-                addStyles: function(styles){
-                    addStyles({ tablet: styles });
-                },
-                importStyle: function(breakpoint, url){
-                    importStyle('tablet', breakpoint, url);
-                },
-                addBreakpoint: function(name, breakpoint, cssString){
-                    addBreakpoint('tablet', name, breakpoint, cssString);
-                },
-                removeBreakpoint: function(name){
-                    removeBreakpoint('tablet', name);
-                }
-            },
+            all: all,
+            desktop: desktop,
+            mobile: mobile,
+            tablet: tablet
         }
     })(document),
     writable: false

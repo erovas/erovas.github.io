@@ -38,14 +38,13 @@ Object.defineProperty(window, "Ver", {
         style.setAttribute('ver-id', 'Ver.js');
         document.head.insertBefore(style, document.head.firstChild); //Al inicio de <head>
 
-        const addCss = function(css, component) {
-            component = component || 'Ver,js';
+        const addCss = function(component, cssString) {
             if(component === 'Ver.js')
-                style.innerHTML += css;
+                style.innerHTML += cssString;
 
             const tag = document.querySelector('style[ver-id="'+component+'"]')
             if(tag)
-                tag.innerHTML += css;
+                tag.innerHTML += cssString;
         }
 
         const getCss = function(component){

@@ -1,7 +1,7 @@
 /*
  * Device.js v1.0.0
- * Pequeña libreria de ayuda, para obtener algunas caracteristicas del dispositivo, como los diferentes 
- * anchos, altos, orientación, pantalla completa, movil o escritorio, alto de la barra de navegación, etc
+ * Pequeña librería de ayuda, para obtener algunas características del dispositivo, como los diferentes 
+ * anchos, altos, orientación, pantalla completa, móvil o escritorio, alto de la barra de navegación, etc.
  * [Back-compatibility: IE9+]
  * (c) 2020 Emanuel Rojas Vásquez
  * MIT License
@@ -39,7 +39,8 @@ Object.defineProperty(window, 'Device', {
     
             'isMobile': {
                 get: function(){
-                    return screen.availHeight === screen.height && screen.availWidth === screen.width && window.outerHeight - window.innerHeight === 0;
+                    const first = screen.availHeight === screen.height && screen.availWidth === screen.width && window.outerHeight - window.innerHeight === 0;
+                    return first ||  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 }
             },
             'isTablet': {
@@ -88,6 +89,8 @@ Object.defineProperty(window, 'Device', {
                         debounced();
                         //return div.offsetHeight - document.documentElement.clientHeight;
                         var height = div.offsetHeight - window.outerHeight;
+                        //Corrección para navegador de XSiaomi
+                        height = height < 0? height * -1 : height;
                         
                         if(this.isFullScreen)
                             height = 0;

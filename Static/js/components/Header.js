@@ -100,7 +100,10 @@
     }
 
     header .content .logo img {
-        height: 100%;
+        /*height: 100%;*/
+        /*width: 55%;*/
+        height: 4rem;
+        width: 9.562rem;
         padding-left: 0.7rem;
     }
 

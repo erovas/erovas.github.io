@@ -65,6 +65,7 @@
     
         #about > div div[data-name=picture] img{
             width: 50%;
+            height: 50%;
         }
         `,
         '3-10':
@@ -85,7 +86,10 @@
         }
     
         #about > div div[data-name=picture] img{
-            width: 80%;
+            /*width: 80%;*/
+            width: 21.3rem;
+            /*height: 80%;*/
+            height: 25.6rem;
         }
         `,
         '5-10':

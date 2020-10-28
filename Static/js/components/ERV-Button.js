@@ -96,17 +96,18 @@ Ver.registerComponent(
 
             border-style: solid;
             border-width: 1px;
-            padding: 2rem
         }
 
         erv-button button a {
             text-decoration: none;
-            color: inherit;
-            width: inherit;
-            height: inherit;
             display: flex;
             align-items: center;
-            justify-content: center
+            justify-content: center;
+            color: inherit;
+            width: 100%;
+            height: inherit;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
         erv-button button:hover {

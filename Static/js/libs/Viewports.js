@@ -71,7 +71,7 @@ Object.defineProperty(window, 'Viewports', {
                 }
                 else if(screen.height > screen.width) { //desktop vertical
                     pvh = Device.vh;
-                    pvw = Device.vw;
+                    pvw = Device.vw; 
                 }
                 else {  //desktop horizontal
                     pvh = Device.vw;
@@ -81,11 +81,19 @@ Object.defineProperty(window, 'Viewports', {
             else if(Device.isMobile){
                 if(screen.height > screen.width){
                     pvh = Device.vh;
-                    pvw = Device.vw
+                    pvw = Device.vw;
+
+                    //Corrección para navegador en Xiaomi (parece que funciona con Firefox - mobile)
+                    const ppvh = window.outerHeight / 100;
+                    pvh = pvh < ppvh? ppvh : pvh;
                 }
                 else {
                     pvh = Device.vw;
                     pvw = Device.vh;
+
+                    //Corrección para navegador en Xiaomi (parece que funciona con Firefox - mobile)
+                    const ppvw = window.outerHeight / 100;
+                    pvw = pvw < ppvw? ppvw : pvw;
                 }
             }
             else { //isDesktop
