@@ -1,493 +1,358 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 
+    <!-- Icono para pestaña "favicon" -->
     <link rel="icon" href="Static/img/logo.png" type="image/png" sizes="16x16">
-    
-    <!-- meta tags -->
+
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--  NO permitir Zoom en movil-->
+    <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1, minimum-scale=1">-->
+    <!-- SI permitir Zoom en movil-->
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1">
-    <meta name="description" content="Emanuel Rojas Vásquez es un desarrollador Full Stack especializado en construir (ocasionalmente diseñar) excepcionales aplicaciones y sitios web, y entre otras similares.">
 
-    <title>Portafolio de Emanuel</title>
+    <meta name="keywords" content="JavaScript, C#, internet explorer, Java, Visual Basic .NET, Visual Basic 5, HTML, CSS, ES5">
+    <meta name="description" content="Emanuel Rojas Vasquez is a software developer specializing in maintenance and building new features to legacy software">
+    <meta name="author" content="Emanuel Rojas Vasquez">
 
-    <!-- Polyfills - Para IE11+ -->
-    <script src="Static/js/polyfills/Symbol-polyfill.min.js"></script>
+    <title>Emanuel R. Vasquez</title>
 
-    <!-- Librerias -->
-    <script src="Static/js/libs/Device.js"></script>  <!-- Obtiene algunas caracteristicas del navegador segun el dispositivo -->
-    <script src="Static/js/libs/Events.js"></script>  <!-- Controlador para delegación de eventos -->
-    <script src="Static/js/libs/Ver.js"></script>     <!-- Mini framework para componentes web -->
-    <script src="Static/js/libs/Styler.js"></script>  <!-- Controlador para estilizado responsive del documento -->
-    <script defer src="Static/js/libs/Viewports.js"></script>  <!-- Genera variables CSS dinamicas con el valor del viewport del dispositivo -->
+    <!--<link rel="stylesheet" href="Static/css/reset.css">-->
 
-    <!-- scripts propios -->
-    <script defer src="Static/js/Initials-Setting.js"></script>
-    <script defer src="Static/js/Styles.js"></script>
+    <script src="https://erovas.github.io/Import.js/Import.js"></script>
+    <script>
+        ['reset', 'header', 'burger', 'main'].forEach(function(css){
+            Import.CSS('Static/css/' + css);
+        });
 
-    <!-- Componentes -->
-    <script defer src="Static/js/components/Check-burger.js"></script>
-    <script defer src="Static/js/components/Header.js"></script>
-    <script defer src="Static/js/components/ERV-H2.js"></script>
-    <script defer src="Static/js/components/ERV-Exp.js"></script>
-    <script defer src="Static/js/components/ERV-Work.js"></script>
-    <script defer src="Static/js/components/ERV-Proj.js"></script>
-    <script defer src="Static/js/components/ERV-Button.js"></script>
+        Import.JS('Static/js/index');
+    </script>
 
 </head>
 <body>
 
-    <header>
-        <a href="#about"><span>01.</span> Sobre mi</a>
-        <p>|</p>
-        <a href="#experience"><span>02.</span> Experiencia</a>
-        <p>|</p>
-        <a href="#work"><span>03.</span> Trabajos</a>
-        <p>|</p>
-        <a href="#projects"><span>04.</span> Proyectos</a>
-        <p>|</p>
-        <a href="#contact"><span>05.</span> Contacto</a>
+    <header class="header">
+
+        <div class="profile">
+
+            <img class="profile-img" src="Static/img/profile-img.jpeg">
+            
+            <h1 class="profile-h1">
+                <a href="index.html">Emanuel R. Vásquez</a>
+            </h1>
+
+            <a href="index.html">
+                <img class="profile-logo" src="Static/img/logo.png">
+            </a>
+
+        </div>
+
+        <div style="margin-top: 16px;">
+            
+        </div>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#about">About</a>
+                </li>
+                <li>
+                    <a href="#skills">Skills</a>
+                </li>
+                <li>
+                    <a href="#experience">Experience</a>
+                </li>
+                <li>
+                    <a href="#portfolio">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </nav>
+
     </header>
 
-    <div id="content">
+    <label class="burger">
+        <input type="checkbox" id="burger">
+        <div class="burger_bar"></div>
+    </label>
 
-        <main>
-            <section class="introduction">
-                <!--<div style="padding-top: 0rem;"></div>-->
-                <h3 style="color: #007ACC;">Hola, mi nombre es</h3>
-                <h1 style="font-size: 8.25rem; color: #ccd6f6; text-align: left;">Emanuel Rojas Vásquez</h1>
-                <p style="color: #5897b4;">Creo herramientas para la web, especialmente relacionado con GUI y UX</p>
+    <a class="back-to-top" href="#home"></a>
 
-            </section>
-            
-            <section id="about">
-                
-                <erv-h2>
-                    <span data-slot="n">01.</span>
-                    <p>Sobre mi</p>
-                </erv-h2>
+    <main>
 
-                <br><br>
-                <div style="display: flex;">
-                    <div data-name="text">
-                        <p>
-                            Hola, soy Emanuel, desarrollador Full Stack.
-                        </p>
-                        <br>
-                        <p>
-                            Me gusta crear bibliotecas y herramientas para la web, los puedes ver en <a href="#projects" style="color: #088de6;">proyectos</a>, entre otras cosas de posible interes.
-                        </p>
-                        <br>
-                        <p>
-                            Estas son algunas de las tecnologias que he utlizado recientemente:
-                        </p>
-                        <br>
+        <section id="home">
 
-                        <div style="padding-left: 3rem;">
-                            <div>
-                                <ul>
-                                    <li>JavaScript (ES5+)</li>
-                                    <li>Jquery</li>
-                                    <li>HTML y CSS</li>
-                                    <li>C# y .Net framework 4.X</li>
-                                    <li>SQL Server</li>
-                                </ul>
+            <div>
+                <p>Hi, my name is</p>
+                <h1>Emanuel Rojas Vásquez</h1>
+                <h2>I like to create and fix code</h2>
+                <span>I'm a software developer specializing in maintenance and building new features to legacy software</span>
+                <span id="cursor">_</span>
+            </div>
+
+        </section>
+
+        <section id="about">
+
+            <div class="section_content">
+                <h2>About Me</h2>
+
+                <p>
+                    Hello! My name is Emanuel Rojas Vásquez and I like to create and fix code on the internet.
+                    My interest in development started back in 2017 when I decided to try create my first videogame from scratch in Javascript.
+                    I like to make libraries and tools, you can see them in my portfolio.
+                </p>
+                <br>
+                <p>
+                    I'm currenly working on:
+                </p>
+                <br>
+
+                <ul class="section_list">
+                    <li>
+                        Frontend with Visual Basic 5 Forms and Windows Forms
+                    </li>
+                    <li>
+                        Backend with Visual Basic 5, Visual Basic .Net and Java.
+                    </li>
+                    <li>
+                        Databases with PL/SQL Oracle and SQLite.
+                    </li>
+                </ul>
+
+            </div>
+
+        </section>
+
+        <section id="skills">
+            <div class="section_content">
+                <h2>Skills</h2>
+                <p> Weekly development breakdown:</p>
+                <br>
+                <div class="section_one-two">
+                    <div>
+
+                        <div class="progress">
+                            <span class="progress-title">VB.Net <i class="val">70%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress">
+                            <span class="progress-title">Java <i class="val">65%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">C# <i class="val">65%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">JavaScript <i class="val">60%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">HTML <i class="val">50%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">CSS <i class="val">50%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 50%;"></div>
                             </div>
                         </div>
 
                     </div>
-                    <div data-name="picture" style="transition: 0.3s;">
-                        <img src="Static/img/about.png">
+                    <div>
+
+                        <div class="progress">
+                            <span class="progress-title">VB5 <i class="val">40%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">MySQL <i class="val">35%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 35%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">SQL Server <i class="val">35%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 35%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">PL/SQL <i class="val">35%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 35%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">SQLite <i class="val">35%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 35%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="progress">
+                            <span class="progress-title">C++ <i class="val">25%</i></span>
+                            <div class="progress-bar">
+                              <div class="progress-fill" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
+
+            </div>
+        </section>
+
+        <section id="experience">
+
+            <div class="section_content">
+                <h2>Experience</h2>
+
+                <div class="section_expecience">
+                    <h3>Legacy Maintainer and Developer</h3>
+                    <h4>November 2021 - Present</h4>
+                    <h5>NTT DATA</h5>
+                    <ul class="section_list">
+                        <li>
+                            Maintenance, correction, optimization and new features to ERP software (Healthcare Sector).
+                        </li>
+                        <li>
+                            Using VB5, VB.NET, Java and PL/SQL Oracle.
+                        </li>
+                        <li>
+                            Working with Visual Basic 5 Forms and Windows Forms.
+                        </li>
+                    </ul>
+                </div>
                 
-            </section>
-    
-            <section id="experience">
-
-                <erv-h2>
-                    <span data-slot="n">02.</span>
-                    <p>Experiencia</p>
-                </erv-h2>
-
-                <br><br>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <erv-exp>
-                    <a href="https://www.cyc.es" target="_blank" data-slot="title">
-                        CyC - Consultoria & Comunicaciones Del País Vasco
-                    </a>
-
-                    <p data-slot="duration">
-                        Julio 2019 - Septiembre 2020
-                    </p>
-
-                    <p data-slot="position">
-                        Desarrollador Full Stack
-                    </p>
-
-                    <ul data-slot="items">
+                <div class="section_expecience">
+                    <h3>Legacy Maintainer</h3>
+                    <h4>August 2021 - October 2021</h4>
+                    <h5>Inycom</h5>
+                    <ul class="section_list">
                         <li>
-                            Desarrollo en equipo de aplicaciones web responsive adaptativo a diferentes dispositivos.
+                            Maintenance, correction, optimization and new features to ERP software (Public Sector).
                         </li>
-                        <br>
                         <li>
-                            Utilizando diferentes lenguajes de programación y/o marcado como C#, JavaScript, (Transact-SQL) SQL Server, HTML5+, CSS3+.
+                            Using VB.NET and PL/SQL Oracle.
                         </li>
-                        <br>
                         <li>
-                            Trabajando con Net. Framework 4.X, Windows Forms y Web Forms.
+                            Working with .Net Framework 4.X and Windows Forms.
                         </li>
                     </ul>
-                </erv-exp>
-
-                <br><br>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <erv-exp>
-                    <a href="https://www.essbilbao.org" target="_blank" data-slot="title">
-                        ESS BILBAO
-                    </a>
-
-                    <p data-slot="duration">
-                        Octubre 2019 - Diciembre 2019
-                    </p>
-
-                    <p data-slot="position">
-                        Programador
-                    </p>
-
-                    <ul data-slot="items">
-                        <li>
-                            Optimización y correción de software para análisis de imagenes (ImageJ) para el conteo de neutrones.
-                        </li>
-                        <br>
-                        <li>
-                            Lenguajes utilizados Java y C++.
-                        </li>
-                    </ul>
-                </erv-exp>
-
-            </section>
-    
-            <section id="work">
-                <erv-h2>
-                    <span data-slot="n">03.</span>
-                    <p>Trabajos</p>
-                </erv-h2>
+                </div>
                 
-                <br><br>
-
-                <p>
-                    Aquí muestro algunos de los trabajos realizados como desarrollador Full Stack. Resaltar que lo mostrado aquí no son los trabajos originales realizados por motivos de confidencialidad, por tanto son recreaciones de los originales.
-                </p>
-                <br><br>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <erv-work>
-                    <a data-slot="title">Gestión de vehículos</a>
-
-                    <p data-slot="description">
-                        Aplicación web de uso interno en una empresa fabricante de coches, para gestionar los vehículos que requieren un retrabajo debido a pequeños fallos en su fabricación.
-                    </p>
-
-                    <ul data-slot="func">
-                        <li>GUI responsive y adaptativo</li>
-                        <li>Compresion de imagenes.</li>
-                        <li>Lector de codigos de barras con camara.</li>
-                        <li>Exportacion de tablas a PDF.</li>
-                        <li>Impresión de informes.</li>
+                <div class="section_expecience">
+                    <h3>Software Developer</h3>
+                    <h4>July 2019 - September 2020</h4>
+                    <h5>CyC</h5>
+                    <ul class="section_list">
+                        <li>
+                            Team development of responsive web applications adaptive to different devices.
+                        </li>
+                        <li>
+                            Using different programming languages and/or markup such as C#, JavaScript, SQL Server, HTML5+ and CSS3+.
+                        </li>
+                        <li>
+                            Working with .Net Framework 4.X, ASP.NET, Windows Forms and Web Forms.
+                        </li>
                     </ul>
-
-                    <a data-slot="impli">75%</a>
-
-                    <ul data-slot="tech">
-                        <li>JavaScript (ES5+)</li>
-                        <li>HTML5 y CSS3</li>
-                        <li>C# 4.0</li>
-                        <li>.Net Framework 4.5.2</li>
-                        <li>OpenID</li>
-                        <li>SQL Server (Transact-SQL)</li>
-                    </ul>
-
-                    <div data-slot="pics">
-                        Sin screenshots
-                    </div>
-
-                    <div data-slot="buttons" style="display: flex; justify-content: center;">
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>demo</a>
-                        </erv-button>
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>repositorio</a>
-                        </erv-button>
-                    </div>
-                    
-                </erv-work>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <br><br><br>
-
-                <erv-work>
-                    <a data-slot="title">Fichaje remoto</a>
-
-                    <p data-slot="description">
-                        Pequeña aplicación web de uso interno en una empresa consultora, para el control de fichaje remoto de sus empleados
-                    </p>
-
-                    <ul data-slot="func">
-                        <li>GUI responsive</li>
-                    </ul>
-
-                    <a data-slot="impli">50%</a>
-
-                    <ul data-slot="tech">
-                        <li>JavaScript (ES5+)</li>
-                        <li>HTML5 y CSS3</li>
-                        <li>C# 4.0</li>
-                        <li>.Net Framework 4.5.2</li>
-                        <li>SQL Server (Transact-SQL)</li>
-                    </ul>
-
-                    <div data-slot="pics">
-                        <li>Sin screenshots</li>
-                    </div>
-
-                    <div data-slot="buttons" style="display: flex; justify-content: center;">
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>demo</a>
-                        </erv-button>
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>repositorio</a>
-                        </erv-button>
-                    </div>
-                    
-                </erv-work>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <br><br><br>
-
-                <erv-work>
-                    <a data-slot="title">Gestion de eventos</a>
-
-                    <p data-slot="description">
-                        Pequeña aplicación web de uso interno y externo para un ayuntamiento, para gestionar eventos e inscripciones realizadas en un municipio.
-                    </p>
-
-                    <ul data-slot="func">
-                        <li>GUI responsive</li>
-                    </ul>
-
-                    <a data-slot="impli">30%</a>
-
-                    <ul data-slot="tech">
-                        <li>JavaScript</li>
-                        <li>HTML y CSS</li>
-                        <li>C# 4.0</li>
-                        <li>ASP.NET Webforms</li>
-                        <li>.Net Framework 4.5.2</li>
-                        <li>SQL Server (Transact-SQL)</li>
-                    </ul>
-
-                    <div data-slot="pics">
-                        <li>Sin screenshots</li>
-                    </div>
-
-                    <div data-slot="buttons">
-                    </div>
-                    
-                </erv-work>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-            </section>
-    
-            <section id="projects">
-                <erv-h2>
-                    <span data-slot="n">04.</span>
-                    <p>Proyectos</p>
-                </erv-h2>
+                </div>
                 
-                <br><br>
-
-                <p>
-                    Aquí muestro los proyectos personales que he realizado (algunos fueron usados en producción), los cuales son mini frameworks y/o bibliotecas que ayudan al desarrollo de aplicaciones.
-                </p>
-                <br><br>
-
-                <erv-proj>
-                    <a data-slot="title">Ver.js</a>
-
-                    <p data-slot="description">
-                        Mini framework para la creación de componentes webs personalizados.
-                    </p>
-
-                    <a data-slot="impli">100%</a>
-
-                    <ul data-slot="deps">
-                        <li>IE11+</li>
+                <div class="section_expecience">
+                    <h3>Programmer</h3>
+                    <h4>October 2018 - December 2018</h4>
+                    <h5>ESSBilbao</h5>
+                    <ul class="section_list">
+                        <li>
+                            Image analysis software optimization and correction (ImageJ) for neutron counting.
+                        </li>
+                        <li>
+                            Languages used Java and C++.
+                        </li>
                     </ul>
+                </div>
 
-                    <ul data-slot="items">
-                        <li>JavaScript (ES5)</li>
-                    </ul>
+            </div>
+            
 
-                    <div data-slot="pics">
-                        <li>Sin screenshots</li>
+        </section>
+
+        <section id="portfolio">
+
+            <div class="section_content">
+                <h2>Portfolio</h2>
+                
+                <div class="projects">
+                <!--
+                    <div class="projects-item">
+                        <h3>Device.js</h3>
+                        <p>Device.js is a JavaScript library to detect device, viewport, and browser information using plain JavaScript.</p>
+    
+                        <div class="projects-links">
+                            <a target="_blank">Homepage</a>
+                            <a target="_blank">Repository</a>
+                        </div>
+                        
                     </div>
 
-                    <div data-slot="buttons" style="display: flex; justify-content: center;">
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>documentación</a>
-                        </erv-button>
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a href="https://github.com/erovas/Ver.js" target="_blank">repositorio</a>
-                        </erv-button>
-                    </div>
-
-                </erv-proj>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <br><br><br>
-
-                <erv-proj>
-                    <a data-slot="title">Device.js</a>
-
-                    <p data-slot="description">
-                        Pequeña biblioteca JavaScript de apoyo que permite obtener algunas caracteristicas del dispositivo, como los diferentes anchos, altos, orientación, pantalla completa, movil-tablet o escritorio, alto de la barra de navegación, etc.
-                    </p>
-
-                    <a data-slot="impli">100%</a>
-
-                    <ul data-slot="deps">
-                        <li>IE9+</li>
-                    </ul>
-
-                    <ul data-slot="items">
-                        <li>JavaScript (ES5)</li>
-                    </ul>
-
-                    <div data-slot="pics">
-                        <div style="display: flex; flex-direction: column; align-items: center;">
-                            <!--<img src="Static/img/Device-desktop.png" style="width: 100%;">
-                            <div style="min-height: 5rem; min-width: 5rem;"></div>-->
-                            <img src="Static/img/Device-mobile.png" style="width: 35%;">
-                            <!--<div style="min-height: 5rem; min-width: 5rem;"></div>
-                            <img src="Static/img/Device-tablet.png" style="width: 50%;">-->
+                    <div class="projects-item">
+                        <h3>Drog.js</h3>
+                        <p>Aasdf asd asd asdfa sd asd asda sd asdaaa</p>
+    
+                        <div class="projects-links">
+                            <a target="_blank">Homepage</a>
+                            <a target="_blank">Repository</a>
                         </div>
                     </div>
+                -->
 
-                    <div data-slot="buttons" style="display: flex; justify-content: center;">
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a href="https://erovas.github.io/Device.js/" target="_blank">demo</a>
-                        </erv-button>
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a href="https://github.com/erovas/Device.js" target="_blank">repositorio</a>
-                        </erv-button>
-                    </div>
+                </div>
 
-                </erv-proj>
+                
 
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
+            </div>
 
-                <br><br><br>
+        </section>
 
-                <erv-proj>
-                    <a data-slot="title">Events.js</a>
+        <section id="contact">
 
-                    <p data-slot="description">
-                        Pequeña biblioteca JavaScript de apoyo que permite gestionar eventos del navegador mediante delegación de eventos.
-                    </p>
+            <div class="section_content">
+                <h2>Contact</h2>
 
-                    <a data-slot="impli">100%</a>
+            </div>
 
-                    <ul data-slot="deps">
-                        <li>IE11+</li>
-                    </ul>
+        </section>
 
-                    <ul data-slot="items">
-                        <li>JavaScript (ES5)</li>
-                    </ul>
-
-                    <div data-slot="pics">
-                        <li>Sin screenshots</li>
-                    </div>
-
-                    <div data-slot="buttons" style="display: flex; justify-content: center;">
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>demo</a>
-                        </erv-button>
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a target="_blank">repositorio</a>
-                        </erv-button>
-                    </div>
-
-                </erv-proj>
-
-                <!-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
-
-                <br><br><br>
-
-                <erv-proj>
-                    <a data-slot="title">Styler.js</a>
-
-                    <p data-slot="description">
-                        Pequeña biblioteca de ayuda, para insertar estilos CSS según el dispositivo (movil, tablet, escritorio o todos).
-                    </p>
-
-                    <a data-slot="impli">100%</a>
-
-                    <ul data-slot="deps">
-                        <li>IE11+</li>
-                        <li>Device.js (opcional)</li>
-                        <li>Events.js (opcional)</li>
-                    </ul>
-
-                    <ul data-slot="items">
-                        <li>JavaScript (ES5)</li>
-                    </ul>
-
-                    <div data-slot="pics">
-                        <li>Sin screenshots</li>
-                    </div>
-
-                    <div data-slot="buttons" style="display: flex; justify-content: center;">
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a>demo</a>
-                        </erv-button>
-                        <erv-button data-color="blue" data-shape="outline">
-                            <a target="_blank">repositorio</a>
-                        </erv-button>
-                    </div>
-
-                </erv-proj>
-
-            </section>
-
-            <section id="contact">
-                <erv-h2>
-                    <span data-slot="n">05.</span>
-                    <p>Contacto</p>
-                </erv-h2>
-            </section>
-
-        </main>
-
-        <div style="height: 10rem;"></div>
-
-        <footer>
-            <p style="text-align: center;">Powered by Github Pages & Ver.js, Device.js, Events.js, Styler,js</p>
-            <p style="min-height: 1rem;"></p>
-            <p>Copyright - 2020</p>
-        </footer>
-
-    </div>
+    </main>
     
 </body>
 </html>

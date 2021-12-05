@@ -1,0 +1,65 @@
+.burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    z-index: 10;
+    border: 0;
+    width: 43px;
+    height: 43px;
+    
+    outline: none !important;
+    background-color: #149ddd;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.burger input {
+    display: none;
+}
+
+.burger_bar {
+    height: 3px;
+    width: 45%;
+    border-radius: 5px;
+    position: relative;
+    background-color: white;
+}
+
+.burger_bar::before {
+    bottom: 230%;
+}
+
+.burger_bar::after {
+    top: 230%;
+}
+
+.burger_bar::before, .burger_bar::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    border-radius: 5px;
+    background-color: white;
+    transition: .3s ease;
+    transition-property: top, bottom;
+}
+
+.burger input:checked ~ .burger_bar::before {
+    bottom: 0;
+}
+
+.burger input:checked ~ .burger_bar::after {
+    top: 0;
+}
+
+@media (min-width: 1185px) {
+
+    .burger {
+        display: none;
+    }
+
+}
