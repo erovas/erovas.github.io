@@ -47,11 +47,13 @@
 
             //Lo que entrega GitHub es un array
             response.forEach(function(element){
+
+                console.log(element);
                 
-                if(element.archived || element.private || element.name == 'erovas' || element.name == 'erovas.github.io')
+                if(element.archived || element.private || element.name == 'erovas' || element.name == 'erovas.github.io' || element.stargazers_count < 1)
                     return;
-                
-                str +=  '<div class="projects-item">';
+
+                str += '<div class="projects-item">';
                 str += '<h3>' + element.name + '</h3>';
                 str += '<p>' + element.description + "</p>";
                 str += '<div class="projects-links">';
